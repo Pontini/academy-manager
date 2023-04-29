@@ -1,0 +1,1 @@
+rootProject.name = "pontini.systems.com.manager-academy"
