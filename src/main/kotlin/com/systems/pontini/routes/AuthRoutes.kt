@@ -1,6 +1,8 @@
 package com.systems.pontini.routes
 
-import com.systems.pontini.routes.auth.AuthController
+import com.systems.pontini.features.auth.presentation.AuthController
+import com.systems.pontini.features.auth.presentation.model.CreateUserRequest
+import com.systems.pontini.features.auth.presentation.model.UserLoginRequest
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
@@ -12,14 +14,13 @@ fun Application.authRoutes(authController: AuthController) {
             post("/register") {
                 val params = call.receive<CreateUserRequest>()
                 val result = authController.onRegisterUser(params)
-                print("AAAAA-> "+result)
                 call.respond(result.statusCode, result)
             }
 
             post("/login") {
-             /*   val params = call.receive<UserLoginParams>()
-                val result = repository.loginUser(params)
-                call.respond(result.statusCode, result)*/
+               val params = call.receive<UserLoginRequest>()
+                val result = authController.loginUser(params)
+                call.respond(result.statusCode, result)
             }
         }
     }

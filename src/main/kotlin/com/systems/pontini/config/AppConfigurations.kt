@@ -1,7 +1,7 @@
 package com.systems.pontini.config
 
-import com.systems.pontini.data.DatabaseFactory
-import com.systems.pontini.di.RepositoryProvider
+import com.systems.pontini.features.auth.data.DatabaseFactory
+import com.systems.pontini.features.auth.di.AuthProvider
 import com.systems.pontini.routes.authRoutes
 import io.ktor.serialization.jackson.*
 import io.ktor.server.application.*
@@ -18,5 +18,5 @@ fun Application.configureContentNegotiation() {
 }
 
 fun Application.configureRouting(){
-    authRoutes(RepositoryProvider.provideAuthController())
+    authRoutes(AuthProvider.provideAuthController())
 }
