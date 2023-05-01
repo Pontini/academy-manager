@@ -52,7 +52,6 @@ dependencies {
     implementation("io.ktor:ktor-server-status-pages:$ktor_version")
 
     implementation("io.insert-koin:koin-ktor:$koin_version")
-    // SLF4J Logger
     implementation("io.insert-koin:koin-logger-slf4j:$koin_version")
 
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
