@@ -4,6 +4,7 @@ import com.systems.pontini.core.BaseResponse
 import com.systems.pontini.features.auth.domain.excpetion.UnauthorizedException
 import com.systems.pontini.features.auth.domain.excpetion.UserExistException
 import com.systems.pontini.features.auth.domain.excpetion.UserNotRegisteredException
+import com.systems.pontini.features.auth.domain.excpetion.UserRegisterInputInvalidException
 import com.systems.pontini.features.auth.domain.usecase.LoginUserUseCase
 import com.systems.pontini.features.auth.domain.usecase.RegisterUserUseCase
 import com.systems.pontini.features.auth.presentation.model.CreateUserRequest
@@ -18,6 +19,9 @@ class AuthController(private val registerUserUseCase: RegisterUserUseCase, priva
             BaseResponse.SuccessResponse(data = result, message = USER_REGISTRATION_SUCCESS)
         } catch (e: Exception) {
             when (e) {
+                is UserRegisterInputInvalidException ->{
+                    BaseResponse.ErrorResponse(e.message)
+                }
                 is UserNotRegisteredException -> {
                     BaseResponse.ErrorResponse(e.message)
                 }
