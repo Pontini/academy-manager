@@ -6,6 +6,8 @@ import com.systems.pontini.config.configureDependencyInjection
 import com.systems.pontini.config.configureStatusPages
 import com.systems.pontini.core.security.configureSecurity
 import com.systems.pontini.routes.authRoutes
+import com.systems.pontini.routes.classRoutes
+import com.systems.pontini.routes.reportRoutes
 import io.ktor.server.application.Application
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
@@ -25,4 +27,6 @@ fun Application.module() {
     configureStatusPages()
     configureSecurity()
     authRoutes()
+    reportRoutes()
+    classRoutes()
 }

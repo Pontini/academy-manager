@@ -9,14 +9,16 @@ val koin_version : String by project
 plugins {
     kotlin("jvm") version "1.8.21"
     id("io.ktor.plugin") version "2.3.0"
+    id("org.jetbrains.kotlin.kapt") version "1.5.31"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.8.21"
 }
 
 group = "com.systems.pontini"
 version = "0.0.1"
 application {
-    mainClass.set("com.systems.pontini.ApplicationKt")
-
+    mainClass.set("com.systems.pontini.Application.kt")
+    applicationName = "My Application"
+    version = "1.0.0"
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
@@ -29,9 +31,7 @@ ktor {
         archiveFileName.set("fat.jar")
     }
 }
-application {
-    mainClass.set("com.systems.pontini.ApplicationKt")
-}
+
 
 dependencies {
     implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
@@ -54,11 +54,10 @@ dependencies {
     implementation("io.insert-koin:koin-ktor:$koin_version")
     implementation("io.insert-koin:koin-logger-slf4j:$koin_version")
 
+// https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox
+    implementation("org.apache.pdfbox:pdfbox:2.0.1")
+
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
-
-
-
-
 
 }
